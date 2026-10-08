@@ -214,3 +214,6 @@ input[type="text"]:focus {
 @layer utilities {
   .text-balance { text-wrap: balance; }
 }
+
+/* Fond de secours (iOS ignore background-attachment: fixed) */
+html { background: var(--bg-deep); }

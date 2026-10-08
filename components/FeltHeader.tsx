@@ -1,4 +1,5 @@
 import Link from "next/link"
+import MobileMenu from "@/components/MobileMenu"
 
 interface Props {
   current: string
@@ -14,8 +15,8 @@ export default function FeltHeader({ current, suit = "♠" }: Props) {
         background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 text-sm">
+      <div className="max-w-6xl mx-auto pl-4 pr-24 md:px-6 py-3 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2 text-sm min-w-0">
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80"
@@ -31,7 +32,7 @@ export default function FeltHeader({ current, suit = "♠" }: Props) {
             >
               ♠
             </div>
-            <span className="font-bold">appli poker</span>
+            <span className="font-bold whitespace-nowrap">appli poker</span>
           </Link>
           <span style={{ color: "var(--text-muted)" }}>/</span>
           <span className="flex items-center gap-1.5" style={{ color: "var(--accent)" }}>
@@ -50,6 +51,7 @@ export default function FeltHeader({ current, suit = "♠" }: Props) {
           <NavLink href="/hh" label="HH" current={current === "Hand history"} />
           <NavLink href="/stats" label="Stats" current={current === "Stats"} />
         </nav>
+        <MobileMenu />
       </div>
     </header>
   )

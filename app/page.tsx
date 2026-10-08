@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import MobileMenu from "@/components/MobileMenu"
 import { useEffect, useState } from "react"
 import { emptyStats, loadStats, type UserStats } from "@/lib/storage"
 import { getLevel, progressToNext } from "@/lib/level"
@@ -32,7 +33,7 @@ export default function Home() {
           background: "color-mix(in srgb, var(--bg-deep) 85%, transparent)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto pl-4 pr-24 md:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center border-2 text-xs font-black"
@@ -54,18 +55,19 @@ export default function Home() {
             <Link href="/hh" style={{ color: "var(--text-secondary)" }}>HH</Link>
             <Link href="/stats" style={{ color: "var(--text-secondary)" }}>Stats</Link>
           </nav>
+          <MobileMenu />
         </div>
       </header>
 
       {/* HERO — un seul message, une seule action */}
-      <section className="max-w-6xl mx-auto px-6 pt-16 sm:pt-24 pb-10">
+      <section className="max-w-6xl mx-auto px-5 sm:px-6 pt-10 sm:pt-24 pb-10">
         <div
           className="text-xs uppercase tracking-widest mb-5"
           style={{ color: "var(--accent)", letterSpacing: "0.3em" }}
         >
           Cash 6-max · 100bb
         </div>
-        <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05] mb-6 text-balance max-w-4xl">
+        <h1 className="text-4xl sm:text-7xl font-semibold tracking-tight leading-[1.05] mb-6 text-balance max-w-4xl">
           Bosse ton{" "}
           <span style={{ color: "var(--accent)" }}>préflop</span>
           <br />
@@ -81,7 +83,7 @@ export default function Home() {
       </section>
 
       {/* MAIN AREA — 2 columns */}
-      <section className="max-w-6xl mx-auto px-6 pb-16 grid lg:grid-cols-[1.5fr_1fr] gap-12">
+      <section className="max-w-6xl mx-auto px-5 sm:px-6 pb-16 grid lg:grid-cols-[1.5fr_1fr] gap-10 lg:gap-12">
         {/* LEFT — context : progression or getting started */}
         <div>
           {isReturning ? (

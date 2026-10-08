@@ -31,7 +31,7 @@ export default function AcademiePage() {
 
         {/* Column headers */}
         <div
-          className="grid grid-cols-[36px_1fr_100px_60px_20px] gap-4 py-2 border-b text-[10px] uppercase tracking-widest"
+          className="grid grid-cols-[28px_1fr_20px] sm:grid-cols-[36px_1fr_100px_60px_20px] gap-3 sm:gap-4 py-2 border-b text-[10px] uppercase tracking-widest"
           style={{
             borderColor: "var(--border)",
             color: "var(--text-muted)",
@@ -39,8 +39,8 @@ export default function AcademiePage() {
         >
           <div>N°</div>
           <div>Titre</div>
-          <div>Niveau</div>
-          <div className="text-right">Durée</div>
+          <div className="hidden sm:block">Niveau</div>
+          <div className="hidden sm:block text-right">Durée</div>
           <div></div>
         </div>
 
@@ -71,7 +71,7 @@ function CourseRow({
 
   const inner = (
     <div
-      className="grid grid-cols-[36px_1fr_100px_60px_20px] gap-4 py-4 border-b items-baseline"
+      className="grid grid-cols-[28px_1fr_20px] sm:grid-cols-[36px_1fr_100px_60px_20px] gap-3 sm:gap-4 py-4 border-b items-baseline"
       style={{ borderColor: "var(--border)" }}
     >
       <div
@@ -95,15 +95,19 @@ function CourseRow({
         >
           {course.subtitle}
         </div>
+        <div className="sm:hidden text-[10px] uppercase tracking-wider mt-1.5">
+          <span style={{ color: levelColor }}>{course.level}</span>
+          <span style={{ color: "var(--text-muted)" }}> · {course.duration_min} min</span>
+        </div>
       </div>
       <div
-        className="text-xs font-medium uppercase tracking-wider"
+        className="hidden sm:block text-xs font-medium uppercase tracking-wider"
         style={{ color: levelColor }}
       >
         {course.level}
       </div>
       <div
-        className="text-xs text-right tabular-nums"
+        className="hidden sm:block text-xs text-right tabular-nums"
         style={{ color: "var(--text-secondary)" }}
       >
         {course.duration_min} min

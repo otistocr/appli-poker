@@ -2,26 +2,215 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Palette FELT (feutre de table)
+   Dark : vert feutre profond + cream + or chaud
+   Light : parchemin crème + bordeaux + or vieilli
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark (default) — table de poker */
+  --bg: #0d3b2e;
+  --bg-deep: #08281f;
+  --surface: #10473a;
+  --surface-2: #14513f;
+  --border: #205a4a;
+  --border-strong: #2f6d5a;
+  --text-primary: #ecdcb2;
+  --text-secondary: #c5b58c;
+  --text-muted: #9d8e6a;
+  --accent: #d4a53f;
+  --accent-hover: #e8b850;
+  --accent-soft: rgba(212, 165, 63, 0.15);
+  --spade-black: #ecdcb2;
+  --heart-red: #d47862;
+  --diamond-red: #d47862;
+  --club-black: #ecdcb2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.light {
+  color-scheme: light;
+  --bg: #f4ead6;
+  --bg-deep: #eadfb8;
+  --surface: #fbf5e3;
+  --surface-2: #f0e5c8;
+  --border: #c9b98d;
+  --border-strong: #a89660;
+  --text-primary: #3a2a1a;
+  --text-secondary: #6b503a;
+  --text-muted: #8a7050;
+  --accent: #8b2b1f;
+  --accent-hover: #a03725;
+  --accent-soft: rgba(139, 43, 31, 0.1);
+  --spade-black: #3a2a1a;
+  --heart-red: #8b2b1f;
+  --diamond-red: #8b2b1f;
+  --club-black: #3a2a1a;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse at top, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "ss01", "cv01", "cv02";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Serif for decorative numbers/titles */
+.font-serif, .decorative {
+  font-family: "Georgia", "Playfair Display", "Cormorant Garamond", serif;
+}
+
+.font-mono, code, pre, .tabular-nums {
+  font-family: "SF Mono", ui-monospace, "Menlo", "Monaco", Consolas, monospace;
+  font-feature-settings: "tnum", "ss01";
+}
+
+/* ============================================================
+   Overrides classes Tailwind neutrales → felt palette
+   ============================================================ */
+
+.bg-neutral-950 { background-color: transparent !important; }
+.bg-neutral-900 { background-color: var(--surface) !important; }
+.bg-neutral-800 { background-color: var(--surface-2) !important; }
+.bg-neutral-700 { background-color: var(--border-strong) !important; }
+
+.text-neutral-100 { color: var(--text-primary) !important; }
+.text-neutral-200 { color: var(--text-primary) !important; }
+.text-neutral-300 { color: var(--text-secondary) !important; }
+.text-neutral-400 { color: var(--text-secondary) !important; }
+.text-neutral-500 { color: var(--text-muted) !important; }
+.text-neutral-600 { color: var(--text-muted) !important; }
+.text-neutral-700 { color: var(--border-strong) !important; }
+
+.border-neutral-800 { border-color: var(--border) !important; }
+.border-neutral-700 { border-color: var(--border-strong) !important; }
+.border-neutral-900 { border-color: var(--surface-2) !important; }
+
+.bg-neutral-800\/50 { background-color: color-mix(in srgb, var(--surface-2) 60%, transparent) !important; }
+.bg-neutral-900\/50 { background-color: color-mix(in srgb, var(--surface) 60%, transparent) !important; }
+.bg-neutral-900\/60 { background-color: color-mix(in srgb, var(--surface) 70%, transparent) !important; }
+
+/* Accent — gold */
+.text-amber-500,
+.text-amber-400 { color: var(--accent) !important; }
+.text-amber-100,
+.text-amber-200 { color: var(--accent) !important; opacity: 0.85; }
+.bg-amber-500 { background-color: var(--accent) !important; color: var(--bg-deep) !important; }
+.bg-amber-400 { background-color: var(--accent-hover) !important; color: var(--bg-deep) !important; }
+.hover\:bg-amber-400:hover { background-color: var(--accent-hover) !important; }
+.hover\:border-amber-500:hover { border-color: var(--accent) !important; }
+.border-amber-500 { border-color: var(--accent) !important; }
+.border-amber-500\/40 { border-color: color-mix(in srgb, var(--accent) 40%, transparent) !important; }
+.border-amber-500\/50 { border-color: color-mix(in srgb, var(--accent) 50%, transparent) !important; }
+.border-amber-800\/50 { border-color: color-mix(in srgb, var(--accent) 40%, transparent) !important; }
+.border-amber-900\/40 { border-color: color-mix(in srgb, var(--accent) 30%, transparent) !important; }
+.border-amber-900\/50 { border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important; }
+.bg-amber-950\/20 { background-color: var(--accent-soft) !important; }
+.bg-amber-950\/30 { background-color: color-mix(in srgb, var(--accent) 18%, transparent) !important; }
+.bg-amber-900\/20 { background-color: var(--accent-soft) !important; }
+
+/* Semantic — raise/call/fold poker-warm */
+.bg-emerald-600 { background-color: #3a9668 !important; color: var(--text-primary) !important; }
+.bg-emerald-500 { background-color: #47a375 !important; color: var(--text-primary) !important; }
+.hover\:bg-emerald-500:hover { background-color: #47a375 !important; }
+.bg-emerald-400 { background-color: #6cb98d !important; color: var(--bg-deep) !important; }
+.border-emerald-500 { border-color: #3a9668 !important; }
+.text-emerald-400 { color: #7ec49b !important; }
+.text-emerald-300 { color: #8fcda9 !important; }
+.bg-emerald-950\/20 { background-color: rgba(58, 150, 104, 0.12) !important; }
+.bg-emerald-950\/30 { background-color: rgba(58, 150, 104, 0.18) !important; }
+.bg-emerald-900\/50 { background-color: rgba(58, 150, 104, 0.25) !important; }
+.border-emerald-900\/50 { border-color: rgba(58, 150, 104, 0.35) !important; }
+
+.bg-blue-600 { background-color: #4a90b8 !important; color: var(--text-primary) !important; }
+.bg-blue-500 { background-color: #5aa0c8 !important; color: var(--text-primary) !important; }
+.hover\:bg-blue-500:hover { background-color: #5aa0c8 !important; }
+.bg-blue-300 { background-color: #92b8d4 !important; color: var(--bg-deep) !important; }
+.text-blue-400 { color: #7fa8ce !important; }
+.text-blue-300 { color: #92b8d4 !important; }
+.bg-blue-950\/30 { background-color: rgba(90, 160, 200, 0.12) !important; }
+.bg-blue-900\/50 { background-color: rgba(90, 160, 200, 0.2) !important; }
+.border-blue-900\/50 { border-color: rgba(90, 160, 200, 0.35) !important; }
+
+.bg-red-600 { background-color: #b8524a !important; color: var(--text-primary) !important; }
+.bg-red-500 { background-color: #c2625a !important; color: var(--text-primary) !important; }
+.hover\:bg-red-500:hover { background-color: #c2625a !important; }
+.text-red-400 { color: #d47862 !important; }
+.text-red-300 { color: #dc8c7a !important; }
+.hover\:text-red-400:hover { color: #d47862 !important; }
+.bg-red-950\/20 { background-color: rgba(184, 82, 74, 0.1) !important; }
+.bg-red-950\/30 { background-color: rgba(184, 82, 74, 0.18) !important; }
+.bg-red-900\/50 { background-color: rgba(184, 82, 74, 0.25) !important; }
+.border-red-500 { border-color: #b8524a !important; }
+.border-red-900\/50 { border-color: rgba(184, 82, 74, 0.35) !important; }
+
+.text-purple-300 { color: #b8a3d0 !important; }
+.bg-purple-900\/50 { background-color: rgba(184, 163, 208, 0.18) !important; }
+.text-cyan-300 { color: #7bc0c9 !important; }
+.bg-cyan-900\/20 { background-color: rgba(123, 192, 201, 0.1) !important; }
+.border-cyan-500\/50 { border-color: rgba(123, 192, 201, 0.35) !important; }
+.text-fuchsia-300 { color: #c9a2c2 !important; }
+.bg-fuchsia-900\/20 { background-color: rgba(201, 162, 194, 0.1) !important; }
+.border-fuchsia-500\/50 { border-color: rgba(201, 162, 194, 0.4) !important; }
+
+/* Textarea + inputs */
+textarea,
+input[type="text"] {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+textarea:focus,
+input[type="text"]:focus {
+  border-color: var(--accent) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Hover backgrounds */
+.hover\:bg-neutral-700:hover { background-color: var(--border-strong) !important; }
+.hover\:bg-neutral-800:hover { background-color: var(--surface-2) !important; }
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--bg-deep);
+}
+
+/* Boutons signature — sobres, sans effet 3D */
+.chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  transition: background 0.15s ease, color 0.15s ease;
+  border: 1px solid var(--accent);
+  color: var(--bg-deep);
+  background: var(--accent);
+}
+.chip-btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.chip-btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+.chip-btn-ghost:hover {
+  background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
 }

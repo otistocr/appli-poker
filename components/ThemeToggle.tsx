@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 type Theme = "light" | "dark"
 
-const STORAGE_KEY = "preflop_wizard_theme"
+const STORAGE_KEY = "appli_poker_theme"
 
 function applyThemeClass(theme: Theme) {
   const root = document.documentElement

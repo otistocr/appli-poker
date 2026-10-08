@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const themeScript = `
 (function() {
   try {
-    var theme = localStorage.getItem('preflop_wizard_theme');
+    var theme = localStorage.getItem('appli_poker_theme');
     if (theme === 'light') document.documentElement.classList.add('light');
   } catch (e) {}
 })();

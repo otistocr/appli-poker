@@ -27,7 +27,8 @@ export interface UserStats {
   daily: Record<string, DailyStats> // date "YYYY-MM-DD" → stats
 }
 
-const STORAGE_KEY = "preflop_wizard_stats_v1"
+const STORAGE_KEY = "appli_poker_stats_v1"
+const ANCIENNE_CLE = "preflop_wizard_stats_v1" // ancien nom du projet : les stats déjà enregistrées sont reprises
 
 export function emptyStats(): UserStats {
   return {
@@ -52,7 +53,7 @@ function todayKey(): string {
 export function loadStats(): UserStats {
   if (typeof window === "undefined") return emptyStats()
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY)
+    const raw = window.localStorage.getItem(STORAGE_KEY) ?? window.localStorage.getItem(ANCIENNE_CLE)
     if (!raw) return emptyStats()
     const parsed = JSON.parse(raw) as UserStats
     return { ...emptyStats(), ...parsed }

@@ -57,9 +57,9 @@ export default function SaaSVariant() {
         <div className="p-3 border-t" style={{ borderColor: "var(--border)" }}>
           <div className="flex items-center gap-2 text-xs text-[color:var(--text-muted)]">
             <div className="w-6 h-6 rounded-full bg-[color:var(--surface-2)] flex items-center justify-center text-[10px]">
-              N
+              M
             </div>
-            <span>neo</span>
+            <span>moi</span>
           </div>
         </div>
       </aside>

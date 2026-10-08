@@ -107,7 +107,7 @@ export default function OrgB() {
             className="text-xs uppercase tracking-widest mb-4"
             style={{ color: "var(--accent)", letterSpacing: "0.3em" }}
           >
-            Bonjour, neo
+            Bonjour
           </div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight mb-3">
             Prêt à travailler ton préflop ?
